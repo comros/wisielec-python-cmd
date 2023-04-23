@@ -1,1 +1,2 @@
-# wisielec-python-cmd
+# Wisielec
+Zrobiony w pythonie.
