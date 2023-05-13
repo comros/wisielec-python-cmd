@@ -1,10 +1,20 @@
 import UI
+import os
+import script
 
-# Tutaj będzie pobierane hasło / wybierane z pliku i formatowane, zarządzanie inputem user'a itd. który będzie wysyłany potem do funkcji w UI
-def startGame():
-    pass
-
-import random
 if __name__ == "__main__":
+    word = ''
+    correct = []
+    incorrect = []
+    used = []
+    corr=0
+    mistakes = 0
+    hiddenWord = ''
     userInput = input('Menu:\n#1. Podaj słowo\n#2. Losowe słowo\n> ')
-    UI.screen(userInput, 0)
+    if userInput == '1':
+        word, wordLength = script.startGame(userInput)
+    elif userInput == '2':
+        word, wordLength = script.startGame(userInput)
+        pass
+    os.system('cls')
+    UI.screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord)
