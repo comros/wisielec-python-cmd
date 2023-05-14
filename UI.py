@@ -17,7 +17,7 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
          
         while True:
 
-            #Ukrycie hasła
+            # Ukrycie hasła
             hiddenWord = ""
             correct = list(set(correct))
             for i in range(0, wordLength):
@@ -53,7 +53,7 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
             # Góra okna gry
             printWhite(f'{corners["upperLeft"]+lines["horizontal"]}WISIELEC{lines["horizontal"]*16+lines["horizontal"]*wordLength*2+corners["upperRight"]}\n')
 
-            # Pętla generująca środek okna gry (za pomocą ilości pomyłek będziemy mogli zmieniać co jest rysowane w środku)
+            # Pętla generująca wisielca i sciany okna gry
             for i in range(0, 8):
                 print(lines["vertical"], end='')
 
@@ -99,26 +99,27 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
                     printWhite(" "*25+"  "*wordLength)
                 else:
                     printWhite(" "*25+"  "*wordLength)
+
                 print(lines["vertical"])
 
             # Dół okna gry
             printWhite(corners["bottomLeft"]+lines["horizontal"]*25+lines["horizontal"]*wordLength*2+corners["bottomRight"]+'\n')
-            printRed(f'\nDługość hasła: {wordLength}\n' + Fore.WHITE)  
         
             # Środkowanie liter
-            printWhite(" "*math.floor(((wordLength - 5)/2)))
+            printWhite("  "*math.floor(((wordLength-2)/2)))
             
-            #Wyświetlanie liter
+            # Wyświetlanie liter
             input_handler.LettersDisplay(mistakes,corr,correct,incorrect)
 
-            print('\n')
-            print(correct)
-            print(incorrect)
-            print(f'pomyłki: {mistakes}')
+            # Do debugowania
+            # print('\n')
+            # printRed(f'\nDługość hasła: {wordLength}\n' + Fore.WHITE)  
+            # print(correct)
+            # print(incorrect)
+            # print(f'pomyłki: {mistakes}')
             
-            #Wpisywanie liter
+            # Wpisywanie liter
             letter = input_handler.LetterInput(used)
             
-            #sprawdzanie poprawnosci wprowadzanych liter
+            # Sprawdzanie poprawnosci wprowadzanych liter
             corr, mistakes = input_handler.LetterCheck(letter,word,correct,incorrect,corr,mistakes)
-            # Nie wiem jeszcze, czy zostanie to tutaj, czy przeniesiemy to do main'a (pod printem infa ma być input użytkownika)

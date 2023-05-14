@@ -16,6 +16,5 @@ if __name__ == "__main__":
         word, wordLength = input_handler.startGame(userInput)
     elif userInput == '2':
         word, wordLength = input_handler.startGame(userInput)
-        pass
     os.system('cls')
     UI.screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord)

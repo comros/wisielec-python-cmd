@@ -2,7 +2,7 @@ import UI
 import random
 from colorama import Fore, Back
 
-#Wybieranie trybu
+# Wybieranie trybu
 def startGame(mode):
     
     if mode == '1':
@@ -21,14 +21,14 @@ def startGame(mode):
             return word, wordLength
 
 
-#Wyświetlanie liter
+# Wyświetlanie liter
 def LettersDisplay(mistakes,corr,correct,incorrect):
     letters = 'AĄBCĆDEĘFGHIJKLŁMNŃOPRSTUÓWXYZŻŹ'
     for i in range(0, len(letters)):
-                #Wyświetlanie liter przy pierwszej iteracji
+                # Wyświetlanie liter przy pierwszej iteracji
                 if mistakes == 0 and corr == 0:
                    UI.printWhite(letters[i])
-                #Wyświetlanie poprawnych i niepoprawnych liter
+                # Wyświetlanie poprawnych i niepoprawnych liter
                 else:
                     flag = 0
                     for j in range(0, len(correct)):
@@ -42,9 +42,10 @@ def LettersDisplay(mistakes,corr,correct,incorrect):
                     if flag == 0:
                         UI.printWhite(letters[i])
 
-#Wprowadzanie liter
+# Wprowadzanie liter
 def LetterInput(used):
     while True:
+        UI.printWhite('')
         letter = input('\nPodaj literę: ').upper()
         if len(letter) > 1:
             UI.printRed("Możesz wpisać tylko jedną literę!"+ Fore.WHITE)
@@ -56,7 +57,7 @@ def LetterInput(used):
             used.append(letter)
             return letter
 
-#Sprawdzanie wprowadzonych liter
+# Sprawdzanie wprowadzonych liter
 def LetterCheck(letter,word,correct,incorrect,corr,mistakes):
     flag2 = 0
     for i in range(0,len(word)):
@@ -68,3 +69,7 @@ def LetterCheck(letter,word,correct,incorrect,corr,mistakes):
         incorrect.append(letter)
         mistakes+=1
     return corr, mistakes
+
+# Przyjmuje ilosc pomylek, jezeli pomylki >= 10 -> sekwencja konca gry / powinna tez obslugiwac wygraną gry
+def EndGame(mistakes):
+    pass
