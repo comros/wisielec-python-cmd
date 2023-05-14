@@ -10,8 +10,14 @@ def startGame(mode):
     
     if mode == '1':
         word = input('Podaj hasło: ').upper().strip()
-        wordLength = len(word)
-        return word, wordLength
+        if not word.isalpha():
+            os.system('cls')
+            UI.printRed('Niepoprawne hasło (może zawierać tylko litery polskiego alfabetu)\n')
+            time.sleep(2.5)
+            main.Menu()
+        else:
+            wordLength = len(word)
+            return word, wordLength
     elif mode == '2':
         with open('words.txt', 'r', encoding='UTF-8') as file:
             rand = random.randint(0,288)
@@ -73,6 +79,8 @@ def LetterCheck(letter,word,correct,incorrect,corr,mistakes):
 
 # Obsluguje zakonczenie gry
 def EndGame(mistakes, word, hiddenWord):
+    
+    # Przegrana
     if mistakes >= 11:
         time.sleep(1)
         os.system('cls')
@@ -81,6 +89,7 @@ def EndGame(mistakes, word, hiddenWord):
         time.sleep(2.5)
         main.Menu()
 
+    # Wygrana
     if word.replace(' ', '') == hiddenWord.replace(' ', ''):
         time.sleep(1)
         os.system('cls')
