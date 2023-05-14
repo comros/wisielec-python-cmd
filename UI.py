@@ -1,4 +1,5 @@
 import os
+import time
 import math
 import input_handler
 from colorama import Fore, Back
@@ -14,9 +15,8 @@ def printGreen(data):
 
 
 def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
-         
-        while True:
 
+        while True:
             # Ukrycie hasła
             hiddenWord = ""
             correct = list(set(correct))
@@ -50,6 +50,7 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
                "horizontal": "─"        #196
                 }
             
+            input_handler.EndGame(mistakes, word, hiddenWord)
             # Góra okna gry
             printWhite(f'{corners["upperLeft"]+lines["horizontal"]}WISIELEC{lines["horizontal"]*16+lines["horizontal"]*wordLength*2+corners["upperRight"]}\n')
 
@@ -104,7 +105,7 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
 
             # Dół okna gry
             printWhite(corners["bottomLeft"]+lines["horizontal"]*25+lines["horizontal"]*wordLength*2+corners["bottomRight"]+'\n')
-        
+
             # Środkowanie liter
             printWhite("  "*math.floor(((wordLength-2)/2)))
             
@@ -116,7 +117,8 @@ def screen(word,wordLength,correct,incorrect,used,corr,mistakes,hiddenWord):
             # printRed(f'\nDługość hasła: {wordLength}\n' + Fore.WHITE)  
             # print(correct)
             # print(incorrect)
-            # print(f'pomyłki: {mistakes}')
+            # print(f'pomyłki: {mistakes}\n')
+            # print(hiddenWord.replace(' ', ''))
             
             # Wpisywanie liter
             letter = input_handler.LetterInput(used)

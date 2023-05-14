@@ -1,5 +1,8 @@
 import UI
+import os
+import time
 import random
+import main
 from colorama import Fore, Back
 
 # Wybieranie trybu
@@ -15,8 +18,6 @@ def startGame(mode):
             for i in range(rand):
                 file.readline()
             word = file.readline().strip().upper()
-            print(word)
-            input()
             wordLength = len(word)
             return word, wordLength
 
@@ -70,6 +71,21 @@ def LetterCheck(letter,word,correct,incorrect,corr,mistakes):
         mistakes+=1
     return corr, mistakes
 
-# Przyjmuje ilosc pomylek, jezeli pomylki >= 10 -> sekwencja konca gry / powinna tez obslugiwac wygraną gry
-def EndGame(mistakes):
-    pass
+# Obsluguje zakonczenie gry
+def EndGame(mistakes, word, hiddenWord):
+    if mistakes >= 11:
+        time.sleep(1)
+        os.system('cls')
+        UI.printRed('Nie zgadłeś! Hasłem było: ')
+        UI.printWhite(f'{word}\n')
+        time.sleep(2.5)
+        main.Menu()
+
+    if word.replace(' ', '') == hiddenWord.replace(' ', ''):
+        time.sleep(1)
+        os.system('cls')
+        UI.printGreen('Zgadłeś! +1 punkt\n')
+        main.punkty += 1
+        UI.printWhite(f'{word}\n')
+        time.sleep(2.5)
+        main.Menu()
